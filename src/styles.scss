@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body {
+  background: #303030;
+  color: #f5f5f5;
+}
+.wrapper {
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+
+  .indicators-container {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    background: white;
+    padding: 5px;
+  }
+}
+
+.block {
+  border: 1px solid black;
+  width: 165px;
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
+  z-index: 100;
+  cursor: pointer;
+  border: 1px solid #444444;
+  background: #2d2d2d;
+
+  &.end {
+    margin-bottom: 6px;
+  }
+}
+
+.spot {
+  padding: 1px 0 1px 1px;
+  border: 0;
+  height: 13px;
+  /* width: 118px; */
+  line-height: 36px;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+
+  .name {
+    float: left;
+    padding: 0;
+    vertical-align: middle;
+    margin-top: 6px;
+  }
+
+  img {
+    float: left;
+    width: 25px;
+    vertical-align: bottom;
+    padding: 4px 0 0px 0;
+    margin-right: 10px;
+    margin-left: 5px;
+  }
+}
+
+
+.group {
+  margin: 20px;
+  padding: 0;
+  float: left;
+  width: 179px;
+
+  -webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2);
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2);
+
+
+  .desc {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #fafafa;
+  }
+
+  .block {
+    z-index: 50;
+  }
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .slot {
+    height: 45px;
+    padding: 0px 10px;
+  }
+
+
+  .slot-hover {
+    background-color: #393939;
+  }
+
+}
+
+
+.box {
+  background-color: #171717;
+  border: 1px solid #444444;
+  width: 100%;
+  padding: 3px 0;
+  font-size: 10px;
+  a {
+    text-decoration: none;
+  }
+  a, a:visited {
+    cursor: help;
+  }
+
+  img {
+    width: 10px;
+    vertical-align: bottom;
+    padding: 1px 1px 1px 4px;
+    border: 0;
+  }
+  .cat {
+    margin: 1px 0;
+  }
+}
+
+.necromancer, .necromancer:visited, .necromancer:hover, .necromancer:visited:hover {
+  color: #52a76f;
+}
+
+.guardian, .guardian:visited, .guardian:hover, .guardian:visited:hover {
+  color: #72c1d9;
+}
+
+.elementalist, .elementalist:visited, .elementalist:hover, .elementalist:visited:hover {
+  color: #f68a87;
+}
+
+.revenant, .revenant:visited, .revenant:hover, .revenant:visited:hover {
+  color: #d16e5a;
+}
+
+.mesmer, .mesmer:visited, .mesmer:hover, .mesmer:visited:hover {
+  color: #b679d5;
+}
+
+.warrior, .warrior:visited, .warrior:hover, .warrior:visited:hover {
+  color: #ffd166;
+}
+
+.thief, .thief:visited, .thief:hover, .thief:visited:hover {
+  color: #c08f95;
+}
+
+.engineer, .engineer:visited, .engineer:hover, .engineer:visited:hover {
+  color: #d09c59;
+}
+
+.ranger, .ranger:visited, .ranger:hover, .ranger:visited:hover {
+  color: #8cdc82;
+}

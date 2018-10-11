@@ -1,0 +1,11 @@
+<div *ngFor="let spec of availableSpecializations">
+    <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
+        <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
+    </div>
+    <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
+        <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
+    </div>
+    <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
+        <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
+    </div>
+</div>
