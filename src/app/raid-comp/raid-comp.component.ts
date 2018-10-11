@@ -29,9 +29,12 @@ export class RaidCompComponent implements OnInit {
     this.group[5] = [null, null, null, null, null];
     this.group[6] = [null, null, null, null, null];
     this.group[7] = [null, null, null, null, null];
+    this.group[8] = [null, null, null, null, null];
+    this.group[9] = [null, null, null, null, null];
   }
 
   handleReceived(evt: ReceivedItemEvent) {
+    console.log("received stuff: " + evt);
     this.group[evt.source][evt.position] = null;
   }
 }
