@@ -9,7 +9,6 @@ export interface ReceivedItemEvent {
 export interface SpotAssignment {
   specialization: Specialization;
   index: number;
-  currentSlot?: number;
 }
 
 export interface DragData {

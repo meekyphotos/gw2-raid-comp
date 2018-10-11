@@ -20,17 +20,26 @@ export class RaidCompComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.group = [];
-    this.group[0] = [null, null, null, null, null];
-    this.group[1] = [null, null, null, null, null];
-    this.group[2] = [null, null, null, null, null];
-    this.group[3] = [null, null, null, null, null];
-    this.group[4] = [null, null, null, null, null];
-    this.group[5] = [null, null, null, null, null];
-    this.group[6] = [null, null, null, null, null];
-    this.group[7] = [null, null, null, null, null];
-    this.group[8] = [null, null, null, null, null];
-    this.group[9] = [null, null, null, null, null];
+    const href = window.location.search.substring(1);
+    if (href) {
+      // decode build
+      // [[[0,1], [0,1], [0,1], [], [0,1]], [[0,1], [0,1], [0,1], [0,1], [0,1]], [[0,1], [0,1], [0,1], [0,1], [0,1]], [[0,1], [0,1], [0,1], [0,1], [0,1]]]
+    } else {
+      this.group = [];
+      this.group[0] = [null, null, null, null, null];
+      this.group[1] = [null, null, null, null, null];
+      this.group[2] = [null, null, null, null, null];
+      this.group[3] = [null, null, null, null, null];
+      this.group[4] = [null, null, null, null, null];
+      this.group[5] = [null, null, null, null, null];
+      this.group[6] = [null, null, null, null, null];
+      this.group[7] = [null, null, null, null, null];
+      this.group[8] = [null, null, null, null, null];
+      this.group[9] = [null, null, null, null, null];
+    }
+    console.log(href);
+
+
   }
 
   handleReceived(evt: ReceivedItemEvent) {
