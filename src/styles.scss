@@ -158,3 +158,169 @@ body {
 .ranger, .ranger:visited, .ranger:hover, .ranger:visited:hover {
   color: #8cdc82;
 }
+
+.count {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  color: #929292;
+  &.full {
+    color: #43A047;
+  }
+
+  h6 {
+    float: right;
+    font-weight: normal;
+    font-size: 8pt;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px;
+    margin-right:12px;
+  }
+}
+
+.summ_boon {
+  margin-left: 12px;
+  height: 88px;
+  h6 {
+    font-weight: normal;
+    font-size: 8pt;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px;
+  }
+
+  div {
+    float: left;
+    margin: 12px 3px 0px 3px;
+    height: 75px;
+    background: url(/assets/boon_3.png) no-repeat 0px 0px;
+    float: left;
+    width: 24px;
+    height: 24px;
+    margin: 0px 2px 6px 0px;
+  }
+  .boon_aegis_off {
+    background-position: 0px 0px;
+  }
+  .boon_fury_off {
+    background-position: -24px 0px;
+  }
+  .boon_might_off {
+    background-position: -48px 0px;
+  }
+  .boon_protection_off {
+    background-position: -72px 0px;
+  }
+  .boon_regeneration_off {
+    background-position: -96px 0px;
+  }
+  .boon_retaliation_off {
+    background-position: -192px 0px;
+  }
+  .boon_stability_off {
+    background-position: -120px 0px;
+  }
+  .boon_swiftness_off {
+    background-position: -144px 0px;
+  }
+  .boon_vigor_off {
+    background-position: -168px 0px;
+  }
+  .boon_quickness_off {
+    background-position: -216px 0px;
+  }
+  .boon_resistance_off {
+    background-position: -240px 0px;
+  }
+  .boon_alacrity_off {
+    background-position: -264px 0px;
+  }
+  .boon_aegis_on {
+    background-position: 0px -24px;
+    cursor: pointer;
+  }
+  .boon_fury_on {
+    background-position: -24px -24px;
+    cursor: pointer;
+  }
+  .boon_might_on {
+    background-position: -48px -24px;
+    cursor: pointer;
+  }
+  .boon_protection_on {
+    background-position: -72px -24px;
+    cursor: pointer;
+  }
+  .boon_regeneration_on {
+    background-position: -96px -24px;
+    cursor: pointer;
+  }
+  .boon_retaliation_on {
+    background-position: -192px -24px;
+    cursor: pointer;
+  }
+  .boon_stability_on {
+    background-position: -120px -24px;
+    cursor: pointer;
+  }
+  .boon_swiftness_on {
+    background-position: -144px -24px;
+    cursor: pointer;
+  }
+  .boon_vigor_on {
+    background-position: -168px -24px;
+    cursor: pointer;
+  }
+  .boon_quickness_on {
+    background-position: -216px -24px;
+    cursor: pointer;
+  }
+  .boon_resistance_on {
+    background-position: -240px -24px;
+    cursor: pointer;
+  }
+  .boon_alacrity_on {
+    background-position: -264px -24px;
+    cursor: pointer;
+  }
+  .boon_aegis_on:hover {
+    background-position: 0px -48px;
+  }
+  .boon_fury_on:hover {
+    background-position: -24px -48px;
+  }
+  .boon_might_on:hover {
+    background-position: -48px -48px;
+  }
+  .boon_protection_on:hover {
+    background-position: -72px -48px;
+  }
+  .boon_regeneration_on:hover {
+    background-position: -96px -48px;
+  }
+  .boon_retaliation_on:hover {
+    background-position: -192px -48px;
+  }
+  .boon_stability_on:hover {
+    background-position: -120px -48px;
+  }
+  .boon_swiftness_on:hover {
+    background-position: -144px -48px;
+  }
+  .boon_vigor_on:hover {
+    background-position: -168px -48px;
+  }
+  .boon_quickness_on:hover {
+    background-position: -216px -48px;
+  }
+  .boon_resistance_on:hover {
+    background-position: -240px -48px;
+  }
+  .boon_alacrity_on:hover {
+    background-position: -264px -48px;
+  }
+}

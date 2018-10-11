@@ -34,7 +34,7 @@ export class RaidCompComponent implements OnInit {
   }
 
   handleReceived(evt: ReceivedItemEvent) {
-    console.log("received stuff: " + evt);
+    console.log('received stuff: ' + evt);
     this.group[evt.source][evt.position] = null;
   }
 }

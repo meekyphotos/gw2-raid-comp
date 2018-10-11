@@ -7,4 +7,22 @@
             </li>
         </ng-container>
     </ul>
+    <div class="count" [class.full]="isFull()">
+        <h6>Count {{countParty()}} / 5</h6>
+    </div>
+    <div class="summ_boon">
+        <h6>Boons</h6>
+        <div [class.boon_aegis_off]="!aegis()" [class.boon_aegis_on]="aegis()"></div>
+        <div [class.boon_alacrity_off]="!alacrity()" [class.boon_alacrity_on]="alacrity()"></div>
+        <div [class.boon_fury_off]="!fury()" [class.boon_fury_on]="fury()"></div>
+        <div [class.boon_might_off]="!might()" [class.boon_might_on]="might()"></div>
+        <div [class.boon_protection_off]="!protection()" [class.boon_protection_on]="protection()"></div>
+        <div [class.boon_quickness_off]="!quickness()" [class.boon_quickness_on]="quickness()"></div>
+        <div [class.boon_regeneration_off]="!regeneration()" [class.boon_regeneration_on]="regeneration()"></div>
+        <div [class.boon_resistance_off]="!resistance()" [class.boon_resistance_on]="resistance()"></div>
+        <div [class.boon_retaliation_off]="!retaliation()" [class.boon_retaliation_on]="retaliation()"></div>
+        <div [class.boon_stability_off]="!stability()" [class.boon_stability_on]="stability()"></div>
+        <div [class.boon_swiftness_off]="!swiftness()" [class.boon_swiftness_on]="swiftness()"></div>
+        <div [class.boon_vigor_off]="!vigor()" [class.boon_vigor_on]="vigor()"></div>
+    </div>
 </div>

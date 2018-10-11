@@ -19,6 +19,7 @@ export interface DragData {
   what: SpotAssignment;
 }
 
+
 export class ClassService {
 
   static getAllSpecializations(): Array<Specialization> {
