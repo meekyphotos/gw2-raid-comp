@@ -7,13 +7,17 @@ import {ClassService, DragData, Specialization} from '../services/class-service'
              styleUrls: ['./class-panel.component.css']
            })
 export class ClassPanelComponent implements OnInit {
-  availableSpecializations: Array<Specialization>;
+  lightSpecializations: Array<Specialization>;
+  mediumSpecializations: Array<Specialization>;
+  heavySpecializations: Array<Specialization>;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.availableSpecializations = ClassService.getAllSpecializations();
+    this.lightSpecializations = ClassService.getLightSpecializations();
+    this.mediumSpecializations = ClassService.getMediumSpecialization();
+    this.heavySpecializations = ClassService.getHeavySpecializations();
   }
 
   drag(spec: Specialization, index: number, ev) {

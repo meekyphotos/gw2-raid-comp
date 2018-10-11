@@ -1,3 +1,4 @@
+
 export interface Specialization {
   name: string;
   specializations: Array<string>;
@@ -20,17 +21,11 @@ export interface DragData {
 
 
 export class ClassService {
-
   static getAllSpecializations(): Array<Specialization> {
+    return this.getHeavySpecializations().concat(this.getMediumSpecialization(), this.getLightSpecializations());
+  }
+  static getHeavySpecializations(): Array<Specialization> {
     return [
-      {
-        'name': 'elementalist',
-        'specializations': [
-          'core',
-          'tempest',
-          'weaver'
-        ]
-      },
       {
         'name': 'warrior',
         'specializations': [
@@ -40,27 +35,32 @@ export class ClassService {
         ]
       },
       {
-        'name': 'ranger',
-        'specializations': [
-          'core',
-          'druid',
-          'soulbeast'
-        ]
-      },
-      {
-        'name': 'necromancer',
-        'specializations': [
-          'core',
-          'reaper',
-          'scourge'
-        ]
-      },
-      {
         'name': 'guardian',
         'specializations': [
           'core',
           'dragonhunter',
           'firebrand'
+        ]
+      },
+      {
+        'name': 'revenant',
+        'specializations': [
+          'core',
+          'herald',
+          'renegade'
+        ]
+      }
+
+    ];
+  }
+  static getMediumSpecialization(): Array<Specialization> {
+    return [
+      {
+        'name': 'ranger',
+        'specializations': [
+          'core',
+          'druid',
+          'soulbeast'
         ]
       },
       {
@@ -78,6 +78,26 @@ export class ClassService {
           'scrapper',
           'holosmith'
         ]
+      }
+    ];
+  }
+  static getLightSpecializations(): Array<Specialization> {
+    return [
+      {
+        'name': 'elementalist',
+        'specializations': [
+          'core',
+          'tempest',
+          'weaver'
+        ]
+      },
+      {
+        'name': 'necromancer',
+        'specializations': [
+          'core',
+          'reaper',
+          'scourge'
+        ]
       },
       {
         'name': 'mesmer',
@@ -86,16 +106,7 @@ export class ClassService {
           'chronomancer',
           'mirage'
         ]
-      },
-      {
-        'name': 'revenant',
-        'specializations': [
-          'core',
-          'herald',
-          'renegade'
-        ]
       }
-
     ];
   }
 }

@@ -1,17 +1,24 @@
-
 <div class="wrapper">
-    <div class="row">
-        <div class="col-12">
-            <h4>Squad Editor</h4>
-        </div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Squad Editor</h4>
     </div>
-    <div class="row">
-    <div class="class-panel-container col-sm-2">
-        <app-class-panel></app-class-panel>
+  </div>
+  <div class="row">
+    <div class="class-panel-container col-sm-4">
+      <app-class-panel></app-class-panel>
+      <div class="tcode row">
+        <div class="col-md-8">
+          <textarea>{{currentLink}}</textarea>
+        </div>
+        <div class="col-md-4">
+          <button class="button" (click)="generateLink()">Get quick link</button>
+        </div>
+      </div>
     </div>
 
-    <div class="raid-comp-container col-sm-10">
-        <app-raid-comp></app-raid-comp>
+    <div class="raid-comp-container col-sm-8">
+      <app-raid-comp [group]="group"></app-raid-comp>
     </div>
-    </div>
+  </div>
 </div>

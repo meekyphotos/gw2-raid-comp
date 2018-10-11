@@ -1,11 +1,41 @@
-<div *ngFor="let spec of availableSpecializations">
-    <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
+<div class="row">
+  <div class="col-md-4">
+    <div *ngFor="let spec of lightSpecializations">
+      <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
         <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
-    </div>
-    <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
+      </div>
+      <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
         <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
-    </div>
-    <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
+      </div>
+      <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
         <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
+      </div>
     </div>
+  </div>
+  <div class="col-md-4">
+    <div *ngFor="let spec of mediumSpecializations">
+      <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
+        <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
+      </div>
+      <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
+        <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
+      </div>
+      <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
+        <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div *ngFor="let spec of heavySpecializations">
+      <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
+        <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
+      </div>
+      <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
+        <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
+      </div>
+      <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
+        <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
+      </div>
+    </div>
+  </div>
 </div>
