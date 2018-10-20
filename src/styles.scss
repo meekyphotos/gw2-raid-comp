@@ -317,53 +317,66 @@ body {
   }
 }
 $md-btn-color: #bf7523;
+$md-btn-primary-color: #00ACC1;
 
+.button {
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  margin-left:5px;
+
+  font-size: 14px;
+  display: inline-block;
+  height: 36px;
+  min-width: 88px;
+  padding: 6px 16px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border:0;
+  border-radius: 2px;
+
+  background: $md-btn-primary-color;
+  color:#fff;
+  outline:0;
+  &:focus {
+    background: darken($md-btn-primary-color, 12%)
+  }
+
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:active {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12),
+    0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  }
+
+}
+.padded {
+  margin-bottom: 15px;
+}
 .tcode {
   margin-top: 5px;
-
   .button {
-    font-weight: 500;
-    text-transform: uppercase;
-    border: none;
-    margin-left:5px;
-
-    font-size: 14px;
-    display: inline-block;
-    height: 36px;
-    min-width: 88px;
-    padding: 6px 16px;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border:0;
-    border-radius: 2px;
     background: $md-btn-color;
     color:#fff;
     outline:0;
     &:focus {
       background: darken($md-btn-color, 12%)
     }
-
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12),
-    0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:active {
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-      0 3px 14px 2px rgba(0, 0, 0, 0.12),
-      0 5px 5px -3px rgba(0, 0, 0, 0.4);
-    }
-
   }
+
   textarea {
     height: 45px;
     border: solid 1px #6d7875;
@@ -380,5 +393,18 @@ $md-btn-color: #bf7523;
       text-align: center;
       line-height: 4.0em;
     }
+  }
+}
+.flexbox {
+  column-count: 2;
+  column-gap: 0;
+    //display: flex;
+    //flex-direction: column;
+    //flex-wrap: wrap;
+    //
+  padding: 0;
+  li {
+    display: inline-block;
+    margin: 5px;
   }
 }

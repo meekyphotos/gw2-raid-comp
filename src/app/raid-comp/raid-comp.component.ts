@@ -1,26 +1,26 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ClassService, DragData, ReceivedItemEvent, Specialization, SpotAssignment} from '../services/class-service';
-
-function assign(specs: Array<Specialization>, classId: number, specId: number): SpotAssignment {
-  return {
-    'specialization': specs[classId],
-    'index': specId
-  };
-}
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DragData, ReceivedItemEvent, SquadMember} from '../services/class-service';
 
 @Component({
              selector: 'app-raid-comp',
              templateUrl: './raid-comp.component.html',
              styleUrls: ['./raid-comp.component.css']
            })
-export class RaidCompComponent implements OnInit {
-  @Input() group: Array<Array<SpotAssignment>>;
+export class RaidCompComponent {
+  @Input() group: Array<Array<SquadMember>>;
+  @Output() changesToSquad: EventEmitter<Array<SquadMember>> = new EventEmitter<Array<SquadMember>>();
+
+  private static getUsedMembers(group: Array<Array<SquadMember>>) {
+    const out = [];
+    group.forEach(value => {
+      out.push(...value.filter(it => it != null));
+    });
+    return out;
+  }
 
   constructor() {
   }
 
-  ngOnInit() {
-  }
 
   handleReceived(evt: ReceivedItemEvent) {
     this.group[evt.source][evt.position] = null;
@@ -36,10 +36,11 @@ export class RaidCompComponent implements OnInit {
     const spotAssignment: DragData = JSON.parse(data);
     if (spotAssignment.hasSource) {
       this.group[spotAssignment.groupId][spotAssignment.positionId] = null;
+      this.changesToSquad.emit(RaidCompComponent.getUsedMembers(this.group));
     }
   }
 
-
-
-
+  emitUpdates() {
+    this.changesToSquad.emit(RaidCompComponent.getUsedMembers(this.group));
+  }
 }

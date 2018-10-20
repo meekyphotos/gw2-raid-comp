@@ -1,4 +1,13 @@
 
+export interface SquadMember {
+  memberId: number;
+  name: string;
+  specialization: string;
+}
+export interface SquadCompPage {
+  squadMembers: Array<SquadMember>;
+}
+
 export interface Specialization {
   name: string;
   specializations: Array<string>;
@@ -8,7 +17,7 @@ export interface ReceivedItemEvent {
   position: number;
 }
 export interface SpotAssignment {
-  specialization: Specialization;
+  specialization: SquadMember;
   index: number;
 }
 
@@ -16,97 +25,19 @@ export interface DragData {
   hasSource: boolean;
   groupId: number;
   positionId: number;
-  what: SpotAssignment;
+  what: SquadMember;
 }
 
+export interface SerializedComp {
+  code: string;
+}
 
-export class ClassService {
-  static getAllSpecializations(): Array<Specialization> {
-    return this.getHeavySpecializations().concat(this.getMediumSpecialization(), this.getLightSpecializations());
-  }
-  static getHeavySpecializations(): Array<Specialization> {
-    return [
-      {
-        'name': 'warrior',
-        'specializations': [
-          'core',
-          'berserker',
-          'spellbreaker'
-        ]
-      },
-      {
-        'name': 'guardian',
-        'specializations': [
-          'core',
-          'dragonhunter',
-          'firebrand'
-        ]
-      },
-      {
-        'name': 'revenant',
-        'specializations': [
-          'core',
-          'herald',
-          'renegade'
-        ]
-      }
+export interface PartyMember {
+  partyId: number;
+  memberId: number;
+  specialization: string;
+}
 
-    ];
-  }
-  static getMediumSpecialization(): Array<Specialization> {
-    return [
-      {
-        'name': 'ranger',
-        'specializations': [
-          'core',
-          'druid',
-          'soulbeast'
-        ]
-      },
-      {
-        'name': 'thief',
-        'specializations': [
-          'core',
-          'daredevil',
-          'deadeye'
-        ]
-      },
-      {
-        'name': 'engineer',
-        'specializations': [
-          'core',
-          'scrapper',
-          'holosmith'
-        ]
-      }
-    ];
-  }
-  static getLightSpecializations(): Array<Specialization> {
-    return [
-      {
-        'name': 'elementalist',
-        'specializations': [
-          'core',
-          'tempest',
-          'weaver'
-        ]
-      },
-      {
-        'name': 'necromancer',
-        'specializations': [
-          'core',
-          'reaper',
-          'scourge'
-        ]
-      },
-      {
-        'name': 'mesmer',
-        'specializations': [
-          'core',
-          'chronomancer',
-          'mirage'
-        ]
-      }
-    ];
-  }
+export interface SquadComp {
+  parties: Array<PartyMember>;
 }

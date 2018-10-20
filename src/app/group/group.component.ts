@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DragData, ReceivedItemEvent, SpotAssignment} from '../services/class-service';
+import {DragData, ReceivedItemEvent, SpotAssignment, SquadMember} from '../services/class-service';
 
 @Component({
              selector: 'app-group',
@@ -9,46 +9,47 @@ import {DragData, ReceivedItemEvent, SpotAssignment} from '../services/class-ser
 export class GroupComponent implements OnInit {
   @Input() title: string;
   @Input() groupId: number;
-  @Input() party: Array<SpotAssignment>;
+  @Input() party: Array<SquadMember>;
   @Output() receivedItem: EventEmitter<ReceivedItemEvent> = new EventEmitter<ReceivedItemEvent>();
+  @Output() updated: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   static isGuardian(value) {
     return value.specialization.name === 'guardian';
   }
 
-  static isElementalist(value) {
-    return value.specialization.name === 'elementalist';
+  static isElementalist(value: SquadMember) {
+    return value.specialization === 'ELEMENTALIST' || value.specialization === 'TEMPEST' ||  value.specialization === 'WEAVER' ;
   }
 
-  static isFirebrand(value) {
-    return value.specialization.name === 'guardian' && value.index === 2;
+  static isFirebrand(value: SquadMember) {
+    return value.specialization === 'FIREBRAND';
   }
 
-  static isTempest(value) {
-    return value.specialization.name === 'elementalist' && value.index === 1;
+  static isTempest(value: SquadMember) {
+    return value.specialization === 'TEMPEST';
   }
 
-  static isScrapper(value) {
-    return value.specialization.name === 'engineer' && value.index === 1;
+  static isScrapper(value: SquadMember) {
+    return value.specialization === 'SCRAPPER';
   }
 
-  static isChronomancer(value) {
-    return value.specialization.name === 'mesmer' && value.index === 1;
+  static isChronomancer(value: SquadMember) {
+    return value.specialization === 'CHRONOMANCER';
   }
 
-  static isHerald(value) {
-    return value.specialization.name === 'revenant' && value.index === 1;
+  static isHerald(value: SquadMember) {
+    return value.specialization === 'HERALD';
   }
 
-  static isDaredevil(value) {
-    return value.specialization.name === 'thief' && value.index === 1;
+  static isDaredevil(value: SquadMember) {
+    return value.specialization === 'DAREDEVIL';
   }
 
-  static isNecromancer(value) {
-    return value.specialization.name === 'necromancer';
+  static isNecromancer(value: SquadMember) {
+    return value.specialization === 'SCOURGE' || value.specialization === 'REAPER' || value.specialization === 'NECROMANCER' ;
   }
 
-  testConditions(callbackfn: (value: SpotAssignment, index: number, array: SpotAssignment[]) => boolean): boolean {
+  testConditions(callbackfn: (value: SquadMember, index: number, array: SquadMember[]) => boolean): boolean {
     return this.party.filter((value, index, array) => value != null && callbackfn(value, index, array)).length > 0;
   }
 
@@ -148,6 +149,7 @@ export class GroupComponent implements OnInit {
     const data = ev.dataTransfer.getData('text');
     const spotAssignment: DragData = JSON.parse(data);
     this.party[slotIndex] = spotAssignment.what;
+    this.updated.emit(true);
     if (spotAssignment.hasSource) {
       if (spotAssignment.groupId === this.groupId) {
         if (spotAssignment.positionId !== slotIndex) {

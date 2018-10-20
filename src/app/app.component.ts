@@ -1,5 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {ClassService, SpotAssignment} from './services/class-service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {SerializedComp, SquadComp, SquadMember} from './services/class-service';
+import {ClassPanelComponent} from './class-panel/class-panel.component';
+import {HttpClient} from '@angular/common/http';
+
+function assignToFirstNonEmptySpot(groupElement: Array<SquadMember>, squadMember: SquadMember) {
+  groupElement[groupElement.findIndex(value => value == null)] = squadMember;
+}
 
 @Component({
              selector: 'app-root',
@@ -7,22 +13,14 @@ import {ClassService, SpotAssignment} from './services/class-service';
              styleUrls: ['./app.component.css']
            })
 export class AppComponent implements OnInit {
-  group: Array<Array<SpotAssignment>>;
+  group: Array<Array<SquadMember>>;
   currentLink = '';
-  nameEncoder = {
-    'warrior': 0,
-    'guardian': 1,
-    'revenant': 2,
-    'ranger': 3,
-    'thief': 4,
-    'engineer': 5,
-    'elementalist': 6,
-    'necromancer': 7,
-    'mesmer': 8
-  };
+  mode = false;
+  @ViewChild('classPanel') classPanel: ClassPanelComponent;
+  constructor(private http: HttpClient) {
 
+  }
   ngOnInit() {
-    const href = window.location.search.substring(1);
     this.group = [];
     this.group[0] = [null, null, null, null, null];
     this.group[1] = [null, null, null, null, null];
@@ -34,82 +32,60 @@ export class AppComponent implements OnInit {
     this.group[7] = [null, null, null, null, null];
     this.group[8] = [null, null, null, null, null];
     this.group[9] = [null, null, null, null, null];
-
-    if (href) {
-      this.readLink(href);
-    }
   }
 
-  private b64EncodeUnicode(str) {
-    // first we use encodeURIComponent to get percent-encoded UTF-8,
-    // then we convert the percent encodings into raw bytes which
-    // can be fed into btoa.
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-                                                function toSolidBytes(match, p1) {
-                                                  return String.fromCharCode(Number('0x' + p1));
-                                                }));
-  }
-
-  private b64DecodeUnicode(str) {
-    // Going backwards: from bytestream, to percent-encoding, to original string.
-    return decodeURIComponent(atob(str).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-  }
 
   generateLink() {
-    // location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
-    const link = [];
-    this.group.forEach((value, index) => {
-      link.push(this.serializeGroup(value));
-    });
-    this.currentLink = this.baseLink() + this.b64EncodeUnicode(JSON.stringify(link));
+    this.http
+        .post<SerializedComp>('/api/serialize', {members: this.group})
+        .subscribe(it => {
+          // location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+          this.currentLink = this.baseLink() + it.code;
+        });
   }
 
   readLink(gibberish: string) {
-    try {
-      const allSpecs = ClassService.getAllSpecializations();
-      const text = this.b64DecodeUnicode(gibberish);
-      const serialized: Array<string> = JSON.parse(text);
-      serialized.forEach((value, index) => {
-        if (value !== 'x') {
-          let slot = 0;
-          for (let i = 0; i < value.length; i++) {
-            if ( value.charAt(i) !== '-' ) {
-              const specId = value.charAt(i);
-              const specIndex = +value.charAt(i + 1);
-              this.group[index][slot] = {
-                specialization: allSpecs[specId],
-                index: specIndex
-              };
-              i++;
-            }
-            slot++;
-          }
-        }
-      });
-    } catch (ignored) {
-    }
-  }
-
-  serializeGroup(value: Array<SpotAssignment>) {
-    let out = '';
-    let empty = true;
-    value.forEach((spot) => {
-      if (spot == null) {
-        out += '-';
-      } else {
-        out += this.nameEncoder[spot.specialization.name] + '' + spot.index;
-        empty = false;
-      }
-    });
-    if ( empty ) {
-      return 'x';
-    }
-    return out;
+    this.http.post<SquadComp>('/api/deserialize', {code: gibberish})
+        .subscribe(result => {
+          const usedSpecializations = [];
+          result.parties.forEach(it => {
+            const squadMember = this.classPanel.getSquadMemberById(it.memberId, it.specialization);
+            assignToFirstNonEmptySpot(this.group[it.partyId], squadMember);
+            usedSpecializations.push(squadMember);
+          });
+          this.classPanel.updateList(usedSpecializations);
+        });
   }
 
   private baseLink() {
     return window.location.protocol + '//' + window.location.hostname + (location.port ? ':' + location.port : '') + '/editor?';
+  }
+
+  notifyClassPanel($event: Array<SquadMember>) {
+    this.classPanel.updateList($event);
+  }
+
+  onClassPanelReady() {
+    const href = window.location.search.substring(1);
+    if (href) {
+      this.readLink(href);
+    }
+
+  }
+
+  switchMode() {
+    // reset currently assigned stuff.
+    this.group[0] = [null, null, null, null, null];
+    this.group[1] = [null, null, null, null, null];
+    this.group[2] = [null, null, null, null, null];
+    this.group[3] = [null, null, null, null, null];
+    this.group[4] = [null, null, null, null, null];
+    this.group[5] = [null, null, null, null, null];
+    this.group[6] = [null, null, null, null, null];
+    this.group[7] = [null, null, null, null, null];
+    this.group[8] = [null, null, null, null, null];
+    this.group[9] = [null, null, null, null, null];
+    this.classPanel.reloadList(this.mode);
+    this.mode = !this.mode;
   }
 }

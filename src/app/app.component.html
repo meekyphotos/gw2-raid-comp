@@ -6,7 +6,13 @@
   </div>
   <div class="row">
     <div class="class-panel-container col-sm-4">
-      <app-class-panel></app-class-panel>
+      <div class="padded">
+        <button class="button" (click)="switchMode()">
+          <ng-container *ngIf="mode">Switch to attendance mode</ng-container>
+          <ng-container *ngIf="!mode">Switch to template mode</ng-container>
+        </button>
+      </div>
+      <app-class-panel #classPanel (ready)="onClassPanelReady()"></app-class-panel>
       <div class="tcode row">
         <div class="col-md-8">
           <textarea>{{currentLink}}</textarea>
@@ -18,7 +24,7 @@
     </div>
 
     <div class="raid-comp-container col-sm-8">
-      <app-raid-comp [group]="group"></app-raid-comp>
+      <app-raid-comp [group]="group" (changesToSquad)="notifyClassPanel($event)"></app-raid-comp>
     </div>
   </div>
 </div>

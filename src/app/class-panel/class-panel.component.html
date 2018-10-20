@@ -1,41 +1,14 @@
 <div class="row">
-  <div class="col-md-4">
-    <div *ngFor="let spec of lightSpecializations">
-      <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
-        <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
-      </div>
-      <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
-        <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
-      </div>
-      <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
-        <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div *ngFor="let spec of mediumSpecializations">
-      <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
-        <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
-      </div>
-      <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
-        <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
-      </div>
-      <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
-        <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div *ngFor="let spec of heavySpecializations">
-      <div class="block" draggable="true" (dragstart)="drag(spec, 0, $event)" >
-        <app-spot [src]="{ specialization: spec, index:0 }"></app-spot>
-      </div>
-      <div class="block" draggable="true" (dragstart)="drag(spec, 1, $event)">
-        <app-spot [src]="{ specialization: spec, index:1 }"></app-spot>
-      </div>
-      <div class="block end" draggable="true" (dragstart)="drag(spec, 2, $event)">
-        <app-spot [src]="{ specialization: spec, index:2 }"></app-spot>
-      </div>
+  <div class="col-md-12">
+    <ul class="flexbox">
+      <ng-container *ngFor="let member of visibleMembers">
+        <li *ngFor="let specialization of member, let i = index" class="block" draggable="true" (dragstart)="drag(specialization, 0, $event)" >
+          <app-spot [src]="specialization"></app-spot>
+        </li>
+      </ng-container>
+    </ul>
+    <div *ngIf="visibleMembers.length == 0">
+      All members has been assigned!
     </div>
   </div>
 </div>
